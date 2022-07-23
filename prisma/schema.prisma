@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_URL")
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  email     String     @unique
+  avatar    String
+  firstName String
+  lastName  String
+  password  String
+  playlists Playlist[]
+}
+
+model Song {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  name       String
+  url        String
+  duration   Int
+  thumbnail  String
+  Artist     Artist     @relation(fields: [artistId], references: [id])
+  artistId   Int
+  playlist   Playlist[]
+  playlistId Int[]
+  Album      Album?     @relation(fields: [albumId], references: [id])
+  albumId    Int?
+}
+
+model Artist {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  avatar    String
+  firstName String
+  lastName  String
+  songs     Song[]
+  name      String   @unique
+  Album     Album[]
+}
+
+model Playlist {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  thumbnail String
+  name      String
+  songs     Song[]
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Album {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  thumbnail String
+  name      String
+  songs     Song[]
+  artist    Artist   @relation(fields: [id], references: [id])
+}
