@@ -97,31 +97,6 @@ And that's why I can't stay`}</Text>
               </Center>
             </Slide>
           )}
-          {/* <Slide direction="bottom" in={!isExpanded}>
-            <Flex bg="gray.900" height="100px" align="center">
-              {activeSong ? (
-                <Box padding="20px" width="30%" color="white">
-                  <Text fontSize="large">{activeSong.name}</Text>
-                  <Text fontSize="sm">{activeSong.Artist.name}</Text>
-                </Box>
-              ) : null}
-              <Box width="40%">
-                {activeSong ? (
-                  <Player songs={songs} activeSong={activeSong} />
-                ) : null}
-              </Box>
-              <Box
-                display="flex"
-                placeContent="flex-end"
-                marginRight="10px"
-                width="30%"
-              >
-                {activeSong ? (
-                  <VolumeController handleExpand={handleExpand} />
-                ) : null}
-              </Box>
-            </Flex>
-          </Slide> */}
         </>
       )}
     </Box>
