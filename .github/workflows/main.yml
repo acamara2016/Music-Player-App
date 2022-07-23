@@ -12,6 +12,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Install modules
-        run: npm ci
+        run: npm install --force
       - name: Build application
         run: npm run build
