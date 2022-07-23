@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable jsx-a11y/aria-proptypes */
+/* eslint-disable no-return-assign */
 import { Box, Flex } from "@chakra-ui/layout";
 import {
   ButtonGroup,
@@ -10,7 +13,6 @@ import {
 import { useState } from "react";
 import {
   BsArrowsAngleExpand,
-  BsFillVolumeDownFill,
   BsFillVolumeUpFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
@@ -19,17 +21,18 @@ const VolumeController = ({ handleExpand }) => {
   const [volume, setVolume] = useState(40);
   const [updatingVolume, setUpdatingVolume] = useState(false);
   const handleTurnOnMute = () => {
-    setMute((state) => {
-      return (state = true);
+    setMute(() => {
+      return true;
     });
   };
   const handleTurnOffMute = () => {
-    setMute((state) => {
-      return (state = false);
+    setMute(() => {
+      return false;
     });
   };
   const handleVolume = (e) => {
     setVolume((state) => {
+      // eslint-disable-next-line prefer-destructuring
       return (state = e[0]);
     });
   };

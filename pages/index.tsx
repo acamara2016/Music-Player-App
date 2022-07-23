@@ -1,15 +1,12 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import Head from "next/head";
 import { Image } from "@chakra-ui/react";
 import GradientLayout from "../components/gradientLayout";
-import Layout from "../components/layout";
 import prisma from "../lib/prisma";
-import styles from "../styles/Home.module.css";
 import { useMe } from "../lib/hook";
 import SongsTable from "../components/songsTable";
 
 const Home = ({ artists, playlist }) => {
-  const { user, isLoading } = useMe();
+  const { user } = useMe();
   return (
     <GradientLayout
       roundImage

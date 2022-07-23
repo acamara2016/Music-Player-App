@@ -1,15 +1,12 @@
 import { Box, Center, Flex, Text } from "@chakra-ui/layout";
+import { useStoreState } from "easy-peasy";
+import { Image } from "@chakra-ui/react";
 import Player from "./player";
-import { useStore, useStoreState } from "easy-peasy";
 import VolumeController from "./volumeController";
-import { IconButton, Image } from "@chakra-ui/react";
-import { BsArrowsAngleExpand } from "react-icons/bs";
-import { useEffect, useState } from "react";
 
 const PlayerBar = ({ isExpanded, handleExpand }) => {
   const songs = useStoreState((state: any) => state.activeSongs);
   const activeSong = useStoreState((state: any) => state.activeSong);
-  console.log({ activeSong });
   return (
     <Box
       height={`${isExpanded ? "80vh" : "100px"}`}
