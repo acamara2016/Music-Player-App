@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  check the build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
