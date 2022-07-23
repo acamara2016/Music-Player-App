@@ -1,0 +1,17 @@
+name: Bamada health check
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check the build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Install modules
+        run: npm ci
+      - name: Build application
+        run: npm run build
