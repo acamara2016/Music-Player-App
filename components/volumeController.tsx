@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/aria-proptypes */
 /* eslint-disable no-return-assign */
@@ -10,6 +11,8 @@ import {
   RangeSliderThumb,
   RangeSliderTrack,
 } from "@chakra-ui/react";
+import { useStoreActions } from "easy-peasy";
+import lyricsFinder from "lyrics-finder";
 import { useState } from "react";
 import {
   BsArrowsAngleExpand,
@@ -19,7 +22,12 @@ import {
 
 const VolumeController = ({ handleExpand }) => {
   const [mute, setMute] = useState(false);
+  const activeSong = useStoreActions((store: any) => store.activeSong);
   const [volume, setVolume] = useState(40);
+  const findLyrics: any = async () => {
+    const lyrics = await lyricsFinder(activeSong?.Artist, activeSong?.name);
+    return lyrics;
+  };
   const [updatingVolume, setUpdatingVolume] = useState(false);
   const handleTurnOnMute = () => {
     setMute(() => {
@@ -79,6 +87,7 @@ const VolumeController = ({ handleExpand }) => {
             <RangeSliderThumb index={0} />
           </RangeSlider>
         </Box>
+        {/* //TODO add get request to fetch lyrics */}
         <IconButton
           fontSize="small"
           sx={{
@@ -88,7 +97,9 @@ const VolumeController = ({ handleExpand }) => {
           }}
           bg="transparent"
           color="white"
-          onClick={() => handleExpand()}
+          onClick={() => {
+            handleExpand();
+          }}
           aria-label="expand"
           icon={<BsArrowsAngleExpand />}
         />

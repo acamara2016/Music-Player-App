@@ -92,7 +92,7 @@ const Player = ({ songs, activeSong }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [seek, playing]);
+  }, [seek, playing, activeSong]);
   return (
     <Box>
       <Box>
