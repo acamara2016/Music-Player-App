@@ -11,7 +11,6 @@ import {
 import NextImage from "next/image";
 import NextLink from "next/link";
 import { IconType } from "react-icons";
-import { Image } from "@chakra-ui/react";
 import {
   MdHome,
   MdSearch,
@@ -32,7 +31,7 @@ const Sidebar = () => {
   const section1: IOption[] = [
     { icon: MdHome, label: "home", route: "/" },
     { icon: MdSearch, label: "search", route: "/search" },
-    { icon: MdLibraryMusic, label: "Your library", route: "/your-library" },
+    { icon: MdLibraryMusic, label: "Your library", route: "/my-library" },
   ];
   const section2: IOption[] = [
     {
@@ -51,7 +50,7 @@ const Sidebar = () => {
       color="white"
     >
       <Box paddingY="20px">
-        <Box marginBottom="20px" paddingX="20px">
+        <Box marginBottom="20px" paddingX="30px">
           <NextImage src="/logo.jpeg" height={60} width={140} />
         </Box>
       </Box>
@@ -126,12 +125,23 @@ const Sidebar = () => {
         </List>
       </Box>
       <Box overflowY="auto" paddingY="20px" height="60%">
-        <List spacing={2}>
+        <List spacing={4}>
           {!isLoading &&
             playlists &&
             playlists?.map((playlist) => (
-              <ListItem key={playlist.id}>
-                <LinkBox>
+              <ListItem
+                sx={{
+                  "&:hover": {
+                    bg: "rgba(255, 255, 255, 0.16)",
+                  },
+                }}
+                fontSize="large"
+                fontWeight="light"
+                padding="10px 0px 10px 0px"
+                marginTop="0px !important"
+                key={playlist.id}
+              >
+                <LinkBox padding="10px">
                   <NextLink
                     href={{
                       pathname: "/playlist/[id]",
@@ -139,10 +149,7 @@ const Sidebar = () => {
                     }}
                     passHref
                   >
-                    <Box display="flex" alignItems="center" gap="5px">
-                      <Image width="25%" src={playlist.thumbnail} />
-                      <LinkOverlay width="75%">{playlist.name}</LinkOverlay>
-                    </Box>
+                    <LinkOverlay>{playlist.name}</LinkOverlay>
                   </NextLink>
                 </LinkBox>
               </ListItem>

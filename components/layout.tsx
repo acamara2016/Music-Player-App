@@ -26,7 +26,7 @@ const Layout: React.FC = ({ children }) => {
         bottom="0"
         zIndex={10}
         width="100vw"
-        height={`${isExpanded ? "80vh" : "100px"}`}
+        height={`${isExpanded ? "78.55vh" : "100px"}`}
       >
         <PlayerBar isExpanded={isExpanded} handleExpand={handleExpand} />
       </Box>
