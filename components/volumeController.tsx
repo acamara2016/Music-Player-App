@@ -16,6 +16,7 @@ import {
   BsFillVolumeUpFill,
   BsVolumeMuteFill,
 } from "react-icons/bs";
+
 const VolumeController = ({ handleExpand }) => {
   const [mute, setMute] = useState(false);
   const [volume, setVolume] = useState(40);
