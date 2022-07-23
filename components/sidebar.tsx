@@ -11,7 +11,6 @@ import {
 import NextImage from "next/image";
 import NextLink from "next/link";
 import { IconType } from "react-icons";
-import { Image } from "@chakra-ui/react";
 import {
   MdHome,
   MdSearch,

@@ -1,8 +1,6 @@
 import { Flex, Box, LinkBox, LinkOverlay } from "@chakra-ui/layout";
 import { Text, Image } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { validateToken } from "../lib/auth";
-import prisma from "../lib/prisma";
 
 const PlaylistLibrary = ({ playlists }) => {
   return (

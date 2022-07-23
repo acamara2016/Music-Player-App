@@ -1,20 +1,10 @@
-import { Box, Flex, LinkBox, LinkOverlay, Text } from "@chakra-ui/layout";
-import NextLink from "next/link";
-import { useState } from "react";
-import {
-  Image,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from "@chakra-ui/react";
+import { Box } from "@chakra-ui/layout";
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react";
 import { validateToken } from "../../lib/auth";
 import prisma from "../../lib/prisma";
 import PlaylistLibrary from "../../components/playlistLibrary";
 
 const MyLibrary = ({ playlists }) => {
-  const [currentTab, setCurrentTab] = useState();
   const tabs: string[] = ["Playlists", "Podcasts", "Artists", "Albums"];
   return (
     <Box height="100%" paddingTop="30px" overflowY="auto" bg="black">
