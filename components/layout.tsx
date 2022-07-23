@@ -1,13 +1,15 @@
-import { Container, Box } from "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import React, { useState } from "react";
 import PlayerBar from "./playerBar";
 import Sidebar from "./sidebar";
 
 const Layout: React.FC = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  // TODO make sidebar responsive for mobile view
+  // const [menuOpen, setMenuOpen] = useState(false);
   const handleExpand = () => {
-    setIsExpanded((state) => {
+    setIsExpanded((state: any) => {
+      // eslint-disable-next-line no-return-assign
       return (state = !state);
     });
   };

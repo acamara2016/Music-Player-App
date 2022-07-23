@@ -1,4 +1,3 @@
-import { InputGroup } from "@chakra-ui/react";
 import bcrypt from "bcrypt";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
@@ -28,7 +27,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   }
   if (user && bcrypt.compareSync(password, user.password)) {
-    console.log("Valid data");
     const token = jwt.sign(
       {
         email: user.email,
@@ -48,10 +46,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         secure: process.env.NODE_ENV === "production",
       })
     );
-    return await res.send(user);
-  } else {
-    res.status(401);
-    res.json({ error: "Could not find user with provided email" });
-    return;
+    return res.send(user);
   }
 };

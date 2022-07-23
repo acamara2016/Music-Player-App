@@ -1,4 +1,5 @@
-import { Box, Spacer } from "@chakra-ui/layout";
+/* eslint-disable import/order */
+import { Box } from "@chakra-ui/layout";
 import { Table, Thead, Td, Tr, Th, Tbody, IconButton } from "@chakra-ui/react";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
@@ -17,10 +18,11 @@ const SongsTable = ({ songs }) => {
       <Box padding="10px" marginBottom="20px">
         <Box marginBottom="20px">
           <IconButton
-            icon={<BsFillPlayFill fontSize="30px" />}
+            icon={<BsFillPlayFill />}
             colorScheme="green"
             onClick={() => handlePlay()}
             size="lg"
+            fontSize="30px"
             isRound
             aria-label="play"
           />

@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/aria-proptypes */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import {
   Box,
   ButtonGroup,
@@ -21,7 +24,6 @@ import {
   MdOutlinePauseCircleFilled,
   MdOutlineRepeat,
 } from "react-icons/md";
-import { useStoreActions } from "easy-peasy";
 import { formatTime } from "../lib/formatters";
 
 const Player = ({ songs, activeSong }) => {
@@ -55,9 +57,8 @@ const Player = ({ songs, activeSong }) => {
           return onSkipNext();
         }
         return next;
-      } else {
-        return state === songs.length - 1 ? 0 : state + 1;
       }
+      return state;
     });
   };
   const onEnd = () => {
@@ -91,7 +92,7 @@ const Player = ({ songs, activeSong }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [seek]);
+  }, [seek, playing]);
   return (
     <Box>
       <Box>

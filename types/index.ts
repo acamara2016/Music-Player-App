@@ -1,11 +1,11 @@
-type ISong = {
+export type ISong = {
   name: string;
   duration: number;
   url: string;
 };
-type IPlaylist = {
+export type IPlaylist = {
   name: string;
-  songs: [ISong];
+  songs: ISong[];
 };
 // {
 //     name: 'Glitch',

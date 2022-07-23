@@ -4,42 +4,33 @@ import {
   Input,
   Button,
   Wrap,
-  WrapItem,
   Avatar,
   FormControl,
-  FormHelperText,
   FormLabel,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { LinkBox } from "@chakra-ui/react";
-import NextLink from "next/link";
 import NextImage from "next/image";
-import { FC, useState } from "react";
-import { useSWRConfig } from "swr";
+import { useState } from "react";
 import { auth } from "../lib/mutation";
-type AuthFormProp = {
-  mode: "signin" | "signup";
-};
+
 const AuthForm = ({ mode }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    const user = await auth(mode, {
+    await auth(mode, {
       email,
       password,
       firstName,
       lastName,
       avatar,
     });
-    console.log(user);
     router.push("/");
     setIsLoading(false);
   };
