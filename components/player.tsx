@@ -24,6 +24,7 @@ import {
   MdOutlinePauseCircleFilled,
   MdOutlineRepeat,
 } from "react-icons/md";
+import { useStoreState } from "easy-peasy";
 import { formatTime } from "../lib/formatters";
 
 const Player = ({ songs, activeSong }) => {
@@ -34,6 +35,7 @@ const Player = ({ songs, activeSong }) => {
   const [isSeeking, setIsSeeking] = useState(false);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
+  const volume = useStoreState((store: any) => store.volume);
   const [duration, setDuration] = useState(0.0);
   const setPlayState = (value) => {
     setPlaying(value);
@@ -99,6 +101,7 @@ const Player = ({ songs, activeSong }) => {
         <ReactHowler
           onEnd={onEnd}
           onLoad={onLoad}
+          volume={volume}
           ref={soundRef}
           playing={playing}
           src={activeSong?.url}

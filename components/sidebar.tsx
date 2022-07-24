@@ -8,7 +8,6 @@ import {
   LinkOverlay,
   Text,
 } from "@chakra-ui/layout";
-import NextImage from "next/image";
 import NextLink from "next/link";
 import { IconType } from "react-icons";
 import {
@@ -19,6 +18,7 @@ import {
   MdFavorite,
 } from "react-icons/md";
 import { usePlaylist } from "../lib/hook";
+import Logo from "./logo";
 
 type IOption = {
   icon: IconType;
@@ -50,15 +50,19 @@ const Sidebar = () => {
       color="white"
     >
       <Box paddingY="20px">
-        <Box marginBottom="20px" paddingX="30px">
-          <NextImage src="/logo.jpeg" height={60} width={140} />
+        <Box border="1px solid" marginBottom="20px" paddingX="30px">
+          <Logo />
         </Box>
       </Box>
       <Box marginBottom="20px">
         <List spacing={2} alignContent="start">
           {section1.map((option) => {
             return option.icon ? (
-              <ListItem fontSize="16px" paddingX="20px" key={option.label}>
+              <ListItem
+                fontSize="16px"
+                padding="10px 0px 0px 0px !important"
+                key={option.label}
+              >
                 <LinkBox>
                   <NextLink href={option.route} passHref>
                     <LinkOverlay
@@ -91,7 +95,11 @@ const Sidebar = () => {
           <br />
           {section2.map((option) => {
             return option.icon ? (
-              <ListItem fontSize="16px" paddingX="20px" key={option.label}>
+              <ListItem
+                fontSize="16px"
+                padding="10px 0px 0px 0px !important"
+                key={option.label}
+              >
                 <LinkBox>
                   <NextLink href={option.route} passHref>
                     <LinkOverlay
@@ -137,7 +145,7 @@ const Sidebar = () => {
                 }}
                 fontSize="large"
                 fontWeight="light"
-                padding="10px 0px 10px 0px"
+                // padding="10px 0px 10px 0px"
                 marginTop="0px !important"
                 key={playlist.id}
               >
