@@ -28,22 +28,33 @@ const VolumeController = ({ handleExpand }) => {
     const lyrics = await lyricsFinder(activeSong?.Artist, activeSong?.name);
     return lyrics;
   };
+  const updateVolume = useStoreActions((store: any) => store.changeVolume);
+  const handleVolumeUpdate = (mode?) => {
+    if (mode) {
+      updateVolume(0.0);
+    } else {
+      updateVolume(volume || 1.0);
+    }
+  };
   const [updatingVolume, setUpdatingVolume] = useState(false);
   const handleTurnOnMute = () => {
     setMute(() => {
       return true;
     });
+    handleVolumeUpdate(mute);
   };
   const handleTurnOffMute = () => {
     setMute(() => {
       return false;
     });
+    handleVolumeUpdate(volume);
   };
   const handleVolume = (e) => {
     setVolume((state) => {
       // eslint-disable-next-line prefer-destructuring
       return (state = e[0]);
     });
+    handleVolumeUpdate(volume);
   };
   return (
     <Box>
