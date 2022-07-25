@@ -46,7 +46,6 @@ const run = async () => {
           name: `Playlist #${i}`,
           thumbnail: `https://picsum.photos/400?random=${i}`,
           user: {
-            //this will connect to userId
             connect: { id: user.id },
           },
           songs: {

@@ -24,7 +24,7 @@ const Home = ({ artists, playlist }) => {
           <Text fontSize="md">Only visible to you</Text>
         </Box>
         <Flex>
-          {artists.map((artist) => {
+          {artists.map((artist, index) => {
             return (
               <Box paddingX="10px" width="20%">
                 <Box
@@ -33,7 +33,10 @@ const Home = ({ artists, playlist }) => {
                   width="100%"
                   padding="15px"
                 >
-                  <Image borderRadius="100%" src={artist.avatar} />
+                  <Image
+                    borderRadius="100%"
+                    src={`https://picsum.photos/400?random=${index}`}
+                  />
                   <Box color="white" paddingTop="10px">
                     <Text fontSize="large" fontWeight="bold">
                       {artist.name}

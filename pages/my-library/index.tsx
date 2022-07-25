@@ -7,25 +7,25 @@ import PlaylistLibrary from "../../components/playlistLibrary";
 const MyLibrary = ({ playlists }) => {
   const tabs: string[] = ["Playlists", "Podcasts", "Artists", "Albums"];
   return (
-    <Box height="100%" paddingTop="30px" overflowY="auto" bg="black">
+    <Box height="100%" paddingTop="30px" bg="black">
       <Tabs variant="soft-rounded" colorScheme="green">
         <TabList>
           {tabs.map((tab) => {
             return <Tab key={tab}>{tab}</Tab>;
           })}
         </TabList>
-        <TabPanels height="calc(100vh - 100px)">
-          <TabPanel>
+        <TabPanels overflowY="auto" height="calc(100vh - 100px)">
+          <TabPanel marginBottom="100px">
             <PlaylistLibrary playlists={playlists} />
           </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel marginBottom="100px">
+            <p>Podcasts</p>
           </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel marginBottom="100px">
+            <p>Artists</p>
           </TabPanel>
-          <TabPanel>
-            <p>two!</p>
+          <TabPanel marginBottom="100px">
+            <p>Albums</p>
           </TabPanel>
         </TabPanels>
       </Tabs>

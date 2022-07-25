@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import NextImage from "next/image";
 import { useState } from "react";
 import { auth } from "../lib/mutation";
+import Logo from "./logo";
 
 const AuthForm = ({ mode }) => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const AuthForm = ({ mode }) => {
         height="100px"
         borderBottom="white 1px solid"
       >
-        <NextImage src="/logo.jpeg" height={60} width={140} />
+        <Logo />
       </Flex>
       <Flex justify="center" align="center" height="calc(100vh - 100px)">
         <Box
