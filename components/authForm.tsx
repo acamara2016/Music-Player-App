@@ -9,7 +9,6 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import NextImage from "next/image";
 import { useState } from "react";
 import { auth } from "../lib/mutation";
 import Logo from "./logo";
