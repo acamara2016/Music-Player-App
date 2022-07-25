@@ -7,8 +7,10 @@ import {
   Avatar,
   FormControl,
   FormLabel,
+  FormHelperText,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import NextLink from "next/link";
 import { useState } from "react";
 import { auth } from "../lib/mutation";
 import Logo from "./logo";
@@ -112,6 +114,13 @@ const AuthForm = ({ mode }) => {
               >
                 {mode}
               </Button>
+              <FormHelperText>
+                {mode === "signin" ? (
+                  <NextLink href="/signup">Click here to sign up</NextLink>
+                ) : (
+                  <NextLink href="/signin">Click here to sign in</NextLink>
+                )}
+              </FormHelperText>
             </FormControl>
           </form>
         </Box>
