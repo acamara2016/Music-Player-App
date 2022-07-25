@@ -24,19 +24,24 @@ import {
   MdOutlinePauseCircleFilled,
   MdOutlineRepeat,
 } from "react-icons/md";
-import { useStoreState } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { formatTime } from "../lib/formatters";
 
 const Player = ({ songs, activeSong }) => {
   const soundRef = useRef(null);
   const [playing, setPlaying] = useState(true);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(
+    songs.findIndex((s) => s.id === activeSong.id)
+  );
   const [seek, setSeek] = useState(0.0);
   const [isSeeking, setIsSeeking] = useState(false);
   const [repeat, setRepeat] = useState(false);
+  const repeatRef = useRef(repeat);
   const [shuffle, setShuffle] = useState(false);
   const volume = useStoreState((store: any) => store.volume);
   const [duration, setDuration] = useState(0.0);
+  const currentActiveSongs = useStoreState((store: any) => store.activeSongs);
+  const changeSong = useStoreActions((store: any) => store.changeActiveSong);
   const setPlayState = (value) => {
     setPlaying(value);
   };
@@ -60,11 +65,11 @@ const Player = ({ songs, activeSong }) => {
         }
         return next;
       }
-      return state;
+      return state + 1;
     });
   };
   const onEnd = () => {
-    if (repeat) {
+    if (repeatRef.current) {
       soundRef.current.seek(0.0);
       setSeek(0);
     } else {
@@ -81,20 +86,25 @@ const Player = ({ songs, activeSong }) => {
     soundRef.current.seek(e[0]);
   };
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (playing) {
-        setSeek((state) => {
-          if (state === duration) {
-            return state;
-          }
-          return state + 1;
-        });
-      }
-    }, 1000);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [seek, playing, activeSong]);
+    repeatRef.current = repeat;
+  }, [repeat]);
+  useEffect(() => {
+    changeSong(songs[index]);
+  }, [index]);
+  useEffect(() => {
+    let timerId;
+    if (playing && !isSeeking) {
+      const f = () => {
+        setSeek(soundRef.current.seek());
+        timerId = requestAnimationFrame(f);
+      };
+      timerId = requestAnimationFrame(f);
+      return () => {
+        cancelAnimationFrame(timerId);
+      };
+    }
+    cancelAnimationFrame(timerId);
+  }, [seek, playing]);
   return (
     <Box>
       <Box>

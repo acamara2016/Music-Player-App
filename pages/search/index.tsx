@@ -64,14 +64,18 @@ const Search = () => {
           />
         </InputGroup>
       </Box>
-      <Box id="all-genres">
-        <Flex
-          overflowY="auto"
-          height="calc(100vh - 100px)"
-          padding="16px 0px 0px 10px"
-          flexWrap="wrap"
-          gap="22px"
-        >
+      <Box
+        overflowY="auto"
+        height="calc(100vh - 100px)"
+        id="all-genres"
+        padding="16px 0px 0px 10px"
+        color="white"
+      >
+        <Text fontSize="xl" fontWeight="bold">
+          Browse all
+        </Text>
+        <br />
+        <Flex marginBottom="120px" flexWrap="wrap" gap="22px">
           {genres.map((genre) => {
             return (
               <Box

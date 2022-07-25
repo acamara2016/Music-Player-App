@@ -20,7 +20,7 @@ const PlayerBar = ({ isExpanded, handleExpand }) => {
             {activeSong ? (
               <Box padding="20px" width="30%" color="white">
                 <Text fontSize="large">{activeSong.name}</Text>
-                <Text fontSize="sm">{activeSong.Artist.name}</Text>
+                <Text fontSize="sm">{activeSong?.Artist?.name}</Text>
               </Box>
             ) : null}
             <Box width="40%">

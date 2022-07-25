@@ -2,7 +2,7 @@ import { Text } from "@chakra-ui/react";
 
 const Logo = () => {
   return (
-    <Text padding="15px" fontSize="xl" fontWeight="bold">
+    <Text padding="15px" fontSize="2xl" fontWeight="bold">
       LOGO
     </Text>
   );
