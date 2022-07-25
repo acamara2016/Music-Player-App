@@ -24,9 +24,9 @@ const Home = ({ artists, playlist }) => {
           <Text fontSize="md">Only visible to you</Text>
         </Box>
         <Flex>
-          {artists.map((artist, index) => {
+          {artists.map((artist) => {
             return (
-              <Box paddingX="10px" width="20%">
+              <Box key={artist.id} paddingX="10px" width="20%">
                 <Box
                   bg="gray.800"
                   borderRadius="4px"
@@ -35,7 +35,7 @@ const Home = ({ artists, playlist }) => {
                 >
                   <Image
                     borderRadius="100%"
-                    src={`https://picsum.photos/400?random=${index}`}
+                    src={`https://picsum.photos/400?random=${artist.id}`}
                   />
                   <Box color="white" paddingTop="10px">
                     <Text fontSize="large" fontWeight="bold">
@@ -58,7 +58,7 @@ export const getServerSideProps = async () => {
   const [playlist] = await prisma.playlist.findMany({
     where: {
       id: 1,
-      //   userId: id,
+      // userId: id,
     },
     include: {
       songs: {
