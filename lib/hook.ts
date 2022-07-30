@@ -20,3 +20,12 @@ export const usePlaylist = () => {
     isError: error,
   };
 };
+
+export const useSongs = () => {
+  const { data, error } = useSWR("song", fetcher);
+  return {
+    songs: (data as any) || [],
+    isLoading: !data && !error,
+    isError: error,
+  };
+};

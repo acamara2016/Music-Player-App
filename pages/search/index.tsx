@@ -1,5 +1,5 @@
 import { Box, Flex, LinkBox, LinkOverlay } from "@chakra-ui/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   InputGroup,
   InputLeftElement,
@@ -7,6 +7,8 @@ import {
   Text,
   Image,
 } from "@chakra-ui/react";
+import prisma from "../../lib/prisma";
+import { useRouter } from "next/router";
 import NextLink from "next/link";
 import { FaSearch } from "react-icons/fa";
 import getBGColor from "../../utils/getBGColor";
@@ -44,25 +46,32 @@ const Search = () => {
   ];
   // eslint-disable-next-line no-unused-vars
   const [search, setSearch] = useState("");
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <Box bg="black">
       <Box padding="30px 0px 20px 0px" id="search-box">
-        <InputGroup>
-          <InputLeftElement
-            pointerEvents="none"
-            // eslint-disable-next-line react/no-children-prop
-            children={<FaSearch color="gray.300" />}
-          />
-          <Input
-            color="black"
-            borderRadius="30px"
-            bg="white"
-            type="tel"
-            onChange={(e) => setSearch(e.target.value)}
-            width="300px"
-            placeholder="Search music, artist, album"
-          />
-        </InputGroup>
+        <form onSubmit={(e) => handleSearch(e)}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              // eslint-disable-next-line react/no-children-prop
+              children={<FaSearch color="gray.300" />}
+            />
+            <Input
+              color="black"
+              borderRadius="30px"
+              bg="white"
+              type="tel"
+              onChange={(e) => handleSearch(e.target.value)}
+              width="300px"
+              placeholder="Search music, artist, album"
+            />
+          </InputGroup>
+        </form>
       </Box>
       <Box
         overflowY="auto"
